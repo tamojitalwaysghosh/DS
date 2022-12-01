@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int linear_search(int *a,int n,int num){
+    int c=0;
+    for(int i=0;i<n;i++){
+        if(num==a[i]){
+            c++;
+            return i;
+        }
+    }
+    if(c==0){
+        return -1;
+    }
+} 
+
+void input_array(int *a,int n){
+    for(int i=0;i<n;i++){
+        printf("enter array elements:");
+        scanf("%d",&a[i]);
+    }
+}
+
+int main()
+{
+    int n,arr[30],x;
+    printf("Enter the number of elements:");
+    scanf("%d",&n);
+    input_array(arr,n);
+    printf("\nlinear search:\n");
+    printf("Enter the element to be searched:\n");
+    scanf("%d",&x);
+    int l=linear_search(arr,n,x);
+    if(l==-1){
+        printf("%d is not pesent in the array",x);
+    }
+    else{
+        printf("%d is found at index:%d",x,linear_search(arr,n,x));
+    }
+    return 0;
+}
