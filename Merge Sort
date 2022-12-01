@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+void merge(int *a,int left,int mid,int right){
+    int i,j,k;
+    int n1=mid-left+1,n2=right-mid;
+    int l[n1],r[n2];
+    
+    for(i=0;i<n1;i++){
+        l[i]=a[left+i];
+    }
+    for(j=0;j<n2;j++){
+        r[j]=a[mid+1+j];
+    }
+    
+    i=0;
+    j=0;
+    k=left;
+    
+    while(i<n1 && j<n2){
+        if(l[i]<=r[j]){
+            a[k++]=l[i++];
+        }
+        else{
+            a[k++]=r[j++];
+        }
+    }
+    while(i<n1){
+        a[k++]=l[i++];
+    }
+    while(j<n2){
+        a[k++]=r[j++];
+    }
+}
+
+void merge_sort(int *a,int l,int h){
+    if(l<h){
+        int mid=(l+h)/2;
+        merge_sort(a,l,mid);
+        merge_sort(a,mid+1,h);
+        merge(a,l,mid,h);
+    }
+}
+
+void print_array(int *a,int n){
+    for(int i=0;i<n;i++){
+        printf("%d ",a[i]);
+    }
+}
+
+void input_array(int *a,int n){
+    for(int i=0;i<n;i++){
+        printf("Enter array elements:");
+        scanf("%d",&a[i]);
+    }
+}
+
+int main()
+{
+    int n,arr[30],x;
+    printf("Enter the number of elements:");
+    scanf("%d",&n);
+    input_array(arr,n);
+    printf("\nmerge sort:\n");
+    merge_sort(arr,0,n-1);
+    print_array(arr,n);
+}
