@@ -17,12 +17,107 @@ void create(){
     if(header==NULL){
         header=newn;
     }
-    else{
+    else
+    {
         ptr=header;
         while(ptr->link!=NULL){
             ptr=ptr->link;
         }
         ptr->link=newn;
+    }
+}
+
+void insert_at_beg(){
+    node *newn;
+    newn=(node*)malloc(sizeof(node));
+    printf("Enter the data:");
+    scanf("%d",&newn->data);
+    newn->link=NULL;
+    if(header==NULL){
+        header=newn;
+    }
+    else
+    {
+        newn->link=header;
+        header=newn;
+    }
+}
+
+void insert_at_end(){
+    node *ptr,*newn;
+    newn=(node*)malloc(sizeof(node));
+    printf("Enter the data:");
+    scanf("%d",&newn->data);
+    newn->link=NULL;
+    if(header==NULL){
+        header=newn;
+    }
+    else
+    {
+        ptr=header;
+        while(ptr->link!=NULL){
+            ptr=ptr->link;
+        }
+        ptr->link=newn;   
+    }
+}
+
+void insert_at_pos(){
+    node *ptr,*newn;
+    int pos;
+    newn=(node*)malloc(sizeof(node));
+    printf("Enter the data:");
+    scanf("%d",&newn->data);
+    printf("Enter position data:");
+    scanf("%d",&pos);
+    newn->link=NULL;
+    if(header==NULL){
+        header=newn;
+    }
+    else
+    {
+        ptr=header;
+        while(ptr->link==NULL){
+            if(ptr->link->data==pos){
+                newn->link=ptr->link;
+                ptr->link=newn;
+                break;
+            }
+            ptr=ptr->link;
+        }
+        printf("position not present");
+    }
+}
+
+void delete_value(){
+    node *ptr,*ptr1;
+    int data;
+    printf("Enter the data:");
+    scanf("%d",&data);
+    if(header==NULL){
+        printf("nothing present here!");
+    }
+    else{
+        ptr=header;
+        ptr1=ptr->link;
+        while(ptr->link!=NULL){
+            if(ptr->data==data){
+                header=ptr1;
+                free(ptr);
+                break;
+            }
+            else if(ptr1->data==data){
+                ptr->link=ptr1->link;
+                free(ptr1);
+                break;
+            }
+            else if(ptr1->link==NULL && ptr1->data==data){
+                ptr->link==NULL;
+                free(ptr1);
+                break;
+            }
+        }
+        
     }
 }
 
@@ -37,19 +132,50 @@ void show(){
             printf("%d->",ptr->data);
             ptr=ptr->link;
         }
-        printf("NULL");
+        printf("NULL\n");
     }
 }
 
 int main() {
     // Write C code here
-    int n;
-    printf("Enter the number of nodes:");
-    scanf("%d",&n);
-    for(int i=0;i<n;i++){
-        create();
+    int ch;
+    printf("1.create\n");
+    
+    while(ch!=7){
+        printf("Enter your choice:");
+        scanf("%d",&ch);
+        switch(ch){
+            case 1:{
+                create();
+                break;
+            }
+            case 2:{
+                insert_at_beg();
+                break;
+            }
+            case 3:{
+                insert_at_end();
+                break;
+            }
+            case 4:{
+                insert_at_pos();
+                break;
+            }
+            case 5:{
+                delete_value();
+                break;
+            }
+            case 6:{
+                printf("printing,,,,\n");
+                show();
+                break;
+            }
+            case 7:
+            {
+                printf("exiting,,,,\n");
+                break;
+            }
+        }
     }
-    printf("printing,,,,\n");
-    show();
     return 0;
 }
