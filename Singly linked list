@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+typedef struct sll{
+    int data;
+    struct sll *link;
+}node;
+
+node *header=NULL;
+
+void create(){
+    node *ptr,*newn;
+    newn=(node*)malloc(sizeof(node));
+    printf("Enter the data:");
+    scanf("%d",&newn->data);
+    newn->link=NULL;
+    if(header==NULL){
+        header=newn;
+    }
+    else{
+        ptr=header;
+        while(ptr->link!=NULL){
+            ptr=ptr->link;
+        }
+        ptr->link=newn;
+    }
+}
+
+void show(){
+    node *ptr;
+    if(header==NULL){
+        printf("nothing present here!");
+    }
+    else{
+        ptr=header;
+        while(ptr!=NULL){
+            printf("%d->",ptr->data);
+            ptr=ptr->link;
+        }
+        printf("NULL");
+    }
+}
+
+int main() {
+    // Write C code here
+    int n;
+    printf("Enter the number of nodes:");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++){
+        create();
+    }
+    printf("printing,,,,\n");
+    show();
+    return 0;
+}
