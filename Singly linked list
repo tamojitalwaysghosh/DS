@@ -77,7 +77,7 @@ void insert_at_pos(){
     else
     {
         ptr=header;
-        while(ptr->link==NULL){
+        while(ptr->link!=NULL){
             if(ptr->link->data==pos){
                 newn->link=ptr->link;
                 ptr->link=newn;
@@ -116,6 +116,8 @@ void delete_value(){
                 free(ptr1);
                 break;
             }
+            ptr=ptr->link;
+            ptr1=ptr1->link;
         }
         
     }
