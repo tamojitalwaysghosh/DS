@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node{
+    int data;
+    struct node* left;
+    struct node* right;
+};
+
+struct node* newNode(int data)
+{
+    struct node* newn=(struct node*)malloc(sizeof(struct node));
+    newn->data=data;
+    newn->left=NULL;
+    newn->right=NULL;
+    
+    return (newn);
+}
+
+void preOrder(struct node* node){
+    if(node==NULL)
+       return;
+    printf("%d ",node->data);
+    preOrder(node->left);
+    preOrder(node->right);
+}
+
+void inOrder(struct node* node){
+    if(node==NULL)
+       return;
+    inOrder(node->left);
+    printf("%d ",node->data);
+    inOrder(node->right);
+}
+
+void postOrder(struct node* node){
+    if(node==NULL)
+       return;
+    postOrder(node->left);
+    postOrder(node->right);
+    printf("%d ",node->data);
+}
+
+int main() {
+    struct node* root = newNode(1);
+    root->left = newNode(2);
+    root->right = newNode(3);
+    root->left->left = newNode(4);
+    root->left->right = newNode(5);
+    int ch=0;
+    printf("\n1.Preorder\n2.Inorder\n3.Postorder\n");
+ 
+    while(ch!=4){
+        printf("\nEnter your choice:");
+        scanf("%d",&ch);
+        switch(ch){
+            case 1:{
+                printf("Preorder:");
+                preOrder(root);
+                break;
+            }
+            case 2:{
+                printf("Inorder:");
+                inOrder(root);
+                break;
+            }
+            case 3:{
+                printf("Postorder:");
+                postOrder(root);
+                break;
+            }
+            case 4:{
+                printf("exiting\n");
+                break;
+            }
+        }
+    }
+ 
+    getchar();
+    return 0;
+}
