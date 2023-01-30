@@ -1,0 +1,71 @@
+#include<stdio.h>
+
+struct node{
+    int data;
+    struct node *left;
+    struct node *right;
+};
+
+struct node *newNode(int val){
+    struct node *newn;
+    newn=malloc(sizeof(struct node));
+    newn->data=val;
+    newn->left=NULL;
+    newn->right=NULL;
+    
+    return newn;
+}
+
+struct node *insert(struct node *root,int val){
+    if(root==NULL){
+        return newNode(val);
+    }
+    
+    if(val>root->data){
+        root->right=insert(root->right,val);
+    }
+    if(val<root->data){
+        root->left=insert(root->left,val);
+    }
+    
+    return root;
+}
+
+void inorder(struct node *root){
+    if(root==NULL){
+        return;
+    }
+    
+    inorder(root->left);
+    printf("%d ",root->data);
+    inorder(root->right);
+}
+
+void main(){
+    struct node *root=NULL;
+    
+    int c=0,val;
+    
+    while(c!=4){
+        printf("\nenter a choice:");
+        scanf("%d",&c);
+        
+        switch(c){
+            case 1:{
+                printf("enter a value:");
+                scanf("%d",&val);
+                root=insert(root,val);
+                break;
+            }
+            case 2:{
+                inorder(root);
+                break;
+            }
+            case 3:{
+                printf("exit");
+                break;
+            }
+        }
+    }
+}
+
