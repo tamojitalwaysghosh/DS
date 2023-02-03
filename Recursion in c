@@ -1,0 +1,114 @@
+#include<stdio.h>
+
+void toh(int num,char frompeg,char topeg,char auxpeg){
+    if(num==1){
+        printf("\nmove disk 1 from %c to %c",frompeg,topeg);
+        
+    }
+    
+    else{
+        toh(num-1,frompeg,auxpeg,topeg);
+        printf("\nmove disk %d from %c to %c",num,frompeg,topeg);
+        toh(num-1,auxpeg,topeg,frompeg);
+    }
+}
+
+int factorial(int num){
+    if(num==0 || num==1){
+        return 1;
+    }
+    else{
+        return(num*factorial(num-1));
+    }
+}
+
+int fibo(int term){
+    
+    if(term==1){
+        return 1;
+    }
+    else if(term==0){
+        return 0;
+    }
+    else{
+        return(fibo(term-1)+fibo(term-2));
+    }
+}
+
+int gcd(int x,int y){
+    if(x%y==0){
+        return y;
+    }
+    else{
+        return gcd(y,x%y);
+    }
+}
+
+int sum (int num)
+{
+    if (num != 0)
+    {
+        return (num % 10 + sum (num / 10));
+    }
+    else
+    {
+       return 0;
+    }
+}
+
+void main(){
+    int n=0,c=0,f;
+    
+    
+    while (c!=9){
+        printf("\nenter choice: ");
+        scanf("%d",&c);
+        
+        switch(c){
+            case 1:{
+                printf("tower of hanoi\n");
+                printf("enter number of disks:");
+                scanf("%d",&n);
+                
+                toh(n,'a','c','b');
+                break;
+            }
+            case 2:{
+                int num;
+                printf("enter a number: ");
+                scanf("%d",&num);
+                f=factorial(num);
+                printf("the factorial is: %d",f);
+                break;
+            }
+            case 3:{
+                int num;
+                printf("enter a number: ");
+                scanf("%d",&num);
+                for(int i=0;i<num;i++){
+                    printf("%d ",fibo(i));
+                }
+                break;
+            }
+            case 4:{
+                int a,b;
+                printf("enter a number: ");
+                scanf("%d",&a);
+                printf("enter a number: ");
+                scanf("%d",&b);
+                f=gcd(a,b);
+                printf("the gcd is: %d",f);
+                break;
+            }
+            case 5:{
+                int num, result;
+ 
+                printf("Enter the number: ");
+                scanf("%d", &num);
+                result = sum(num);
+                printf("Sum of digits in %d is %d\n", num, result);
+                
+            }
+        }
+    }
+}
