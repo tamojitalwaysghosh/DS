@@ -31,6 +31,8 @@ void main(){
     //taking the number of coins to be taken
     int num_of_coin=coinf(coins,size,value);
     
+    printf("Total Coins Needed: %d",num_of_coins);
+    
     //final coins array 
     for(int i=0;i<num_of_coin;i++){
         printf("%d ",ans[i]);
