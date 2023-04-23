@@ -38,3 +38,8 @@ void main(){
         printf("%d ",ans[i]);
     }
 }
+
+
+//OUTPUT:
+//Total Coins Needed = 5
+//Coins are:	25 25 25 25 5 
