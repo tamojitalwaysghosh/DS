@@ -120,3 +120,21 @@ void main()
     
     knapsack(n,max,weight,value);
 }
+
+
+//*Fractional Knapsack*
+//Enter the number of objects: 5
+//Enter max weight of the knapsack: 60
+//Enter the weight and value associated(separate the values using space): 
+//2 56
+//3 10
+//1 14
+//3 56
+//2 53
+//The table:
+//weight  2	2	3	1	3	
+//value   56	53	56	14	10	
+//ratio   28.000000	26.500000	18.666666	14.000000	3.333333	
+//The x values are: 
+//1.000000	1.000000	1.000000	1.000000	1.000000	
+//th total profit is:   189.000000
